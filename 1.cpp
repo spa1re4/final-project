@@ -70,11 +70,22 @@ int main() {
     destination2.accommodations.push_back({"Hotel Olympia", "N.G. Chernyshevsky Street, 61, Saratov", 4});
     destination2.accommodations.push_back({"Hotel Absolute", "128 Myasnitskaya Street, Saratov", 4});
     destination2.activities.push_back({"the Volga River", "go on a spa cruise along the Volga."});
-
+    destination2.activities.push_back({"Victory Park", "visit the exhibition of military and civilian equipment."});
+    
+    TouristDestination destination3 = {"London", "The city of Russia, It is known for the Volga river."};
+    destination3.attractions.push_back({"Kirov Avenue", "There are many attractions on the former German street: Ancient merchant houses, the church Assuage My Sorrows."});
+    destination3.attractions.push_back({"Saratov Bridge", "The automobile bridge across the Volga is the link between Saratov and the city of Engels."});
+    destination3.accommodations.push_back({"Hotel Olympia", "N.G. Chernyshevsky Street, 61, Saratov", 4});
+    destination3.accommodations.push_back({"Hotel Absolute", "128 Myasnitskaya Street, Saratov", 4});
+    destination3.activities.push_back({"the Volga River", "go on a spa cruise along the Volga."});
+    destination3.activities.push_back({"Victory Park", "visit the exhibition of military and civilian equipment."});
+    
+    
     // Панель выбора туристических направлений
     cout << "Select a tourist destination:" << endl;
     cout << "1. Bishkek" << endl;
     cout << "2. Saratov" << endl;
+    cout << "3. London" << endl;
     cout << "Enter your choice: ";
     int choice;
     cin >> choice;
@@ -82,8 +93,10 @@ int main() {
     // Выводим информацию о выбранном туристическом направлении
     if (choice == 1) {
         printTouristDestination(destination1);
-    } else if (choice == 2) {
+    } else if (choice == 2) { 
         printTouristDestination(destination2);
+    } else if(choice ==3){
+          printTouristDestination(destination3);
     } else {
         cout << "Invalid choice!" << endl;
     }
