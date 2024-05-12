@@ -4,26 +4,26 @@
 
 using namespace std;
 
-// Структура, представляющая информацию о достопримечательностях
+// Struct representing information about attractions
 struct Attraction {
     string name;
     string description;
 };
 
-// Структура, представляющая информацию об отеле
+// Struct representing information about accommodations
 struct Accommodation {
     string name;
     string address;
     int rating;
 };
 
-// Структура, представляющая информацию о доступных активностях
+// Struct representing information about activities
 struct Activity {
     string name;
     string description;
 };
 
-// Структура, представляющая информацию о туристическом направлении
+// Struct representing information about tourist destinations
 struct TouristDestination {
     string name;
     string description;
@@ -32,7 +32,7 @@ struct TouristDestination {
     vector<Activity> activities;
 };
 
-// Функция для вывода информации о туристическом направлении
+// Function to print information about a tourist destination
 void printTouristDestination(const TouristDestination& destination) {
     cout << "Destination: " << destination.name << endl;
     cout << "Description: " << destination.description << endl;
@@ -55,51 +55,187 @@ void printTouristDestination(const TouristDestination& destination) {
     cout << endl;
 }
 
+// Function to create a new tourist destination
+TouristDestination createTouristDestination() {
+    TouristDestination destination;
+    cout << "Enter destination name: ";
+    cin >> destination.name;
+    cout << "Enter destination description: ";
+    cin.ignore();
+    getline(cin, destination.description);
+    return destination;
+}
+
+// Function to create a new attraction
+Attraction createAttraction() {
+    Attraction attraction;
+    cout << "Enter attraction name: ";
+    cin >> attraction.name;
+    cout << "Enter attraction description: ";
+    cin.ignore();
+    getline(cin, attraction.description);
+    return attraction;
+}
+
+// Function to create a new accommodation
+Accommodation createAccommodation() {
+    Accommodation accommodation;
+    cout << "Enter accommodation name: ";
+    cin >> accommodation.name;
+    cout << "Enter accommodation address: ";
+    cin.ignore();
+    getline(cin, accommodation.address);
+    cout << "Enter accommodation rating (1-5 stars): ";
+    cin >> accommodation.rating;
+    return accommodation;
+}
+
+// Function to create a new activity
+Activity createActivity() {
+    Activity activity;
+    cout << "Enter activity name: ";
+    cin >> activity.name;
+    cout << "Enter activity description: ";
+    cin.ignore();
+    getline(cin, activity.description);
+    return activity;
+}
+
+// Function to update a tourist destination
+void updateTouristDestination(TouristDestination& destination) {
+    cout << "Enter new destination name: ";
+    cin >> destination.name;
+    cout << "Enter new destination description: ";
+    cin.ignore();
+    getline(cin, destination.description);
+}
+
+// Function to delete a tourist destination
+void deleteTouristDestination(vector<TouristDestination>& destinations, int index) {
+    destinations.erase(destinations.begin() + index);
+}
+
+// Function to delete an attraction
+void deleteAttraction(vector<Attraction>& attractions, int index) {
+    attractions.erase(attractions.begin() + index);
+}
+
+// Function to delete an accommodation
+void deleteAccommodation(vector<Accommodation>& accommodations, int index) {
+    accommodations.erase(accommodations.begin() + index);
+}
+
+// Function to delete an activity
+void deleteActivity(vector<Activity>& activities, int index) {
+    activities.erase(activities.begin() + index);
+}
+
 int main() {
-    // Создаем несколько туристических направлений
-    TouristDestination destination1 = {"Bishkek", "The capital city of Kyrgyzstan, known for its art, culture, and history."};
-    destination1.attractions.push_back({"Ala-Too Square", "The heart of Bishkek is its central Ala-Too square."});
-    destination1.attractions.push_back({"Victory Square", "Victory Square in Bishkek is a tribute to everyone who made their contribution to the approach of the cherished day."});
-    destination1.accommodations.push_back({"Hotel Urban", "79 Yakova Logvinenko str, Bishkek", 3});
-    destination1.accommodations.push_back({"Hotel Madison", "210 Kievskaya Street, Bishkek", 4});
-    destination1.activities.push_back({"Ala-Archa Gorge", "The only mountains that can be better than mountains are those that you haven't been to yet."});
+    vector<TouristDestination> destinations;
 
-    TouristDestination destination2 = {"Saratov", "The city of Russia, It is known for the Volga river."};
-    destination2.attractions.push_back({"Kirov Avenue", "There are many attractions on the former German street: Ancient merchant houses, the church Assuage My Sorrows."});
-    destination2.attractions.push_back({"Saratov Bridge", "The automobile bridge across the Volga is the link between Saratov and the city of Engels."});
-    destination2.accommodations.push_back({"Hotel Olympia", "N.G. Chernyshevsky Street, 61, Saratov", 4});
-    destination2.accommodations.push_back({"Hotel Absolute", "128 Myasnitskaya Street, Saratov", 4});
-    destination2.activities.push_back({"the Volga River", "go on a spa cruise along the Volga."});
-    destination2.activities.push_back({"Victory Park", "visit the exhibition of military and civilian equipment."});
-    
-    TouristDestination destination3 = {"London", "The city of Russia, It is known for the Volga river."};
-    destination3.attractions.push_back({"Kirov Avenue", "There are many attractions on the former German street: Ancient merchant houses, the church Assuage My Sorrows."});
-    destination3.attractions.push_back({"Saratov Bridge", "The automobile bridge across the Volga is the link between Saratov and the city of Engels."});
-    destination3.accommodations.push_back({"Hotel Olympia", "N.G. Chernyshevsky Street, 61, Saratov", 4});
-    destination3.accommodations.push_back({"Hotel Absolute", "128 Myasnitskaya Street, Saratov", 4});
-    destination3.activities.push_back({"the Volga River", "go on a spa cruise along the Volga."});
-    destination3.activities.push_back({"Victory Park", "visit the exhibition of military and civilian equipment."});
-    
-    
-    // Панель выбора туристических направлений
-    cout << "Select a tourist destination:" << endl;
-    cout << "1. Bishkek" << endl;
-    cout << "2. Saratov" << endl;
-    cout << "3. London" << endl;
-    cout << "Enter your choice: ";
     int choice;
-    cin >> choice;
+    do {
+        // Menu
+        cout << "CRUD Operations on Tourist Destinations" << endl;
+        cout << "1. Create Destination" << endl;
+        cout << "2. Read Destination" << endl;
+        cout << "3. Update Destination" << endl;
+        cout << "4. Delete Destination" << endl;
+        cout << "5. Create Attraction" << endl;
+        cout << "6. Delete Attraction" << endl;
+        cout << "7. Create Accommodation" << endl;
+        cout << "8. Delete Accommodation" << endl;
+        cout << "9. Create Activity" << endl;
+        cout << "10. Delete Activity" << endl;
+        cout << "11. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    // Выводим информацию о выбранном туристическом направлении
-    if (choice == 1) {
-        printTouristDestination(destination1);
-    } else if (choice == 2) { 
-        printTouristDestination(destination2);
-    } else if(choice ==3){
-          printTouristDestination(destination3);
-    } else {
-        cout << "Invalid choice!" << endl;
-    }
+        switch (choice) {
+            case 1: { // Create Destination
+                TouristDestination newDestination = createTouristDestination();
+                destinations.push_back(newDestination);
+                break;
+            }
+            case 2: { // Read Destination
+                cout << "Tourist Destinations:" << endl;
+                for (size_t i = 0; i < destinations.size(); ++i) {
+                    cout << i + 1 << ". " << destinations[i].name << endl;
+                }
+                cout << "Enter the index of the destination you want to view: ";
+                int index;
+                cin >> index;
+                if (index > 0 && index <= static_cast<int>(destinations.size())) {
+                    printTouristDestination(destinations[index - 1]);
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
+                break;
+            }
+            case 3: { // Update Destination
+                cout << "Enter the index of the destination you want to update: ";
+                int index;
+                cin >> index;
+                if (index > 0 && index <= static_cast<int>(destinations.size())) {
+                    updateTouristDestination(destinations[index - 1]);
+                    cout << "Destination updated successfully!" << endl;
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
+                break;
+            }
+            case 4: { // Delete Destination
+                cout << "Enter the index of the destination you want to delete: ";
+                int index;
+                cin >> index;
+                if (index > 0 && index <= static_cast<int>(destinations.size())) {
+                    deleteTouristDestination(destinations, index - 1);
+                    cout << "Destination deleted successfully!" << endl;
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
+                break;
+            }
+            case 5: { // Create Attraction
+                cout << "Enter the index of the destination to add the attraction: ";
+                int index;
+                cin >> index;
+                if (index > 0 && index <= static_cast<int>(destinations.size())) {
+                    Attraction newAttraction = createAttraction();
+                    destinations[index - 1].attractions.push_back(newAttraction);
+                    cout << "Attraction added successfully!" << endl;
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
+                break;
+            }
+            case 6: { // Delete Attraction
+                // Similar to delete destination, but for attractions
+                break;
+            }
+            case 7: { // Create Accommodation
+                // Similar to create attraction, but for accommodations
+                break;
+            }
+            case 8: { // Delete Accommodation
+                // Similar to delete destination, but for accommodations
+                break;
+            }
+            case 9: { // Create Activity
+                // Similar to create attraction, but for activities
+                break;
+            }
+            case 10: { // Delete Activity
+                // Similar to delete destination, but for activities
+                break;
+            }
+            case 11: // Exit
+                cout << "Exiting program." << endl;
+                break;
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+    } while (choice != 11);
 
     return 0;
 }
