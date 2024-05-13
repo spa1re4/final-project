@@ -210,23 +210,86 @@ int main() {
                 break;
             }
             case 6: { // Delete Attraction
-                // Similar to delete destination, but for attractions
+                cout << "Enter the index of the destination from which you want to delete the attraction: ";
+                int destIndex;
+                cin >> destIndex;
+                if (destIndex > 0 && destIndex <= static_cast<int>(destinations.size())) {
+                    cout << "Enter the index of the attraction you want to delete: ";
+                    int attIndex;
+                    cin >> attIndex;
+                    if (attIndex > 0 && attIndex <= static_cast<int>(destinations[destIndex - 1].attractions.size())) {
+                        deleteAttraction(destinations[destIndex - 1].attractions, attIndex - 1);
+                        cout << "Attraction deleted successfully!" << endl;
+                    } else {
+                        cout << "Invalid attraction index!" << endl;
+                    }
+                } else {
+                    cout << "Invalid destination index!" << endl;
+                }
                 break;
             }
             case 7: { // Create Accommodation
-                // Similar to create attraction, but for accommodations
+                int destIndex;
+                cout << "Enter the index of the destination to add the accommodation: ";
+                cin >> destIndex;
+                if (destIndex > 0 && destIndex <= static_cast<int>(destinations.size())) {
+                    Accommodation newAccommodation = createAccommodation();
+                    destinations[destIndex - 1].accommodations.push_back(newAccommodation);
+                    cout << "Accommodation added successfully!" << endl;
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
                 break;
             }
             case 8: { // Delete Accommodation
-                // Similar to delete destination, but for accommodations
+                cout << "Enter the index of the destination from which you want to delete the accommodation: ";
+                int destIndex;
+                cin >> destIndex;
+                if (destIndex > 0 && destIndex <= static_cast<int>(destinations.size())) {
+                    cout << "Enter the index of the accommodation you want to delete: ";
+                    int accIndex;
+                    cin >> accIndex;
+                    if (accIndex > 0 && accIndex <= static_cast<int>(destinations[destIndex - 1].accommodations.size())) {
+                        deleteAccommodation(destinations[destIndex - 1].accommodations, accIndex - 1);
+                        cout << "Accommodation deleted successfully!" << endl;
+                    } else {
+                        cout << "Invalid accommodation index!" << endl;
+                    }
+                } else {
+                    cout << "Invalid destination index!" << endl;
+                }
                 break;
             }
             case 9: { // Create Activity
-                // Similar to create attraction, but for activities
+                int destIndex;
+                cout << "Enter the index of the destination to add the activity: ";
+                cin >> destIndex;
+                if (destIndex > 0 && destIndex <= static_cast<int>(destinations.size())) {
+                    Activity newActivity = createActivity();
+                    destinations[destIndex - 1].activities.push_back(newActivity);
+                    cout << "Activity added successfully!" << endl;
+                } else {
+                    cout << "Invalid index!" << endl;
+                }
                 break;
             }
             case 10: { // Delete Activity
-                // Similar to delete destination, but for activities
+                cout << "Enter the index of the destination from which you want to delete the activity: ";
+                int destIndex;
+                cin >> destIndex;
+                if (destIndex > 0 && destIndex <= static_cast<int>(destinations.size())) {
+                    cout << "Enter the index of the activity you want to delete: ";
+                    int actIndex;
+                    cin >> actIndex;
+                    if (actIndex > 0 && actIndex <= static_cast<int>(destinations[destIndex - 1].activities.size())) {
+                        deleteActivity(destinations[destIndex - 1].activities, actIndex - 1);
+                        cout << "Activity deleted successfully!" << endl;
+                    } else {
+                        cout << "Invalid activity index!" << endl;
+                    }
+                } else {
+                    cout << "Invalid destination index!" << endl;
+                }
                 break;
             }
             case 11: // Exit
