@@ -5,7 +5,7 @@ The test files provided below are designed to validate the functionality Tourist
 Test file 1
 Bishkek", "The capital city of Kyrgyzstan, known for its art, culture, and history.
 Ala-Too Square", "The heart of Bishkek is its central Ala-Too square
-Hotel Urban", "79 Yakova Logvinenko str, Bishkek
+Hotel Urban" 4 
 Ala-Archa Gorge", "The only mountains that can be better than mountains are those that you haven't been to yet
 ```
 Test file 2
@@ -13,13 +13,13 @@ Test file 2
 ```
 Saratov", "The city of Russia, It is known for the Volga river
 Kirov Avenue", "There are many attractions on the former German street: Ancient merchant houses, the church Assuage My Sorrows
-Hotel Olympia", "N.G. Chernyshevsky Street, 61, Saratov
+Hotel Olympia", 4
 Victory Park", "visit the exhibition of military and civilian equipment
 ```
 Test file 3
 ```
 London,"The capital city of England, known for its art, culture, and history
 Big Ben,The world—famous clock tower, towering over the English Parliament building, is one of London's most recognizable landmarks
-The Lodge Hotel - Putney,52-54 Upper Richmond Road,London
+The Lodge Hotel 5
 Day Trips,you can visit Stonehenge, Windsor Castle and Bath with Pub Lunch in Lacock and anothers
 ```
