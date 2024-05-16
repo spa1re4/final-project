@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -130,6 +131,81 @@ void deleteActivity(vector<Activity>& activities, int index) {
     activities.erase(activities.begin() + index);
 }
 
+// Function to save tourist destinations to a file
+void saveDestinations(const vector<TouristDestination>& destinations, const string& filename) {
+    ofstream outputFile(filename);
+    if (!outputFile.is_open()) {
+        cout << "Unable to open file: " << filename << endl;
+        return;
+    }
+
+    for (const auto& destination : destinations) {
+        outputFile << destination.name << endl
+                   << destination.description << endl;
+        for (const auto& attraction : destination.attractions) {
+            outputFile << "Attraction\n"
+                       << attraction.name << endl
+                       << attraction.description << endl;
+        }
+        for (const auto& accommodation : destination.accommodations) {
+            outputFile << "Accommodation\n"
+                       << accommodation.name << endl
+                       << accommodation.address << endl
+                       << accommodation.rating << endl;
+        }
+        for (const auto& activity : destination.activities) {
+            outputFile << "Activity\n"
+                       << activity.name << endl
+                       << activity.description << endl;
+        }
+        outputFile << "-end-" << endl;
+    }
+
+    outputFile.close();
+    cout << "Destinations saved to " << filename << endl;
+}
+
+// Function to load tourist destinations from a file
+void loadDestinations(vector<TouristDestination>& destinations, const string& filename) {
+    ifstream inputFile(filename);
+    if (!inputFile.is_open()) {
+        cout << "Unable to open file: " << filename << endl;
+        return;
+    }
+
+    TouristDestination destination;
+    string line;
+    while (getline(inputFile, line)) {
+        if (line == "-end-") {
+            destinations.push_back(destination);
+            destination = TouristDestination();
+        } else if (line == "Attraction") {
+            Attraction attraction;
+            getline(inputFile, attraction.name);
+            getline(inputFile, attraction.description);
+            destination.attractions.push_back(attraction);
+        } else if (line == "Accommodation") {
+            Accommodation accommodation;
+            getline(inputFile, accommodation.name);
+            getline(inputFile, accommodation.address);
+            inputFile >> accommodation.rating;
+            inputFile.ignore();
+            destination.accommodations.push_back(accommodation);
+        } else if (line == "Activity") {
+            Activity activity;
+            getline(inputFile, activity.name);
+            getline(inputFile, activity.description);
+            destination.activities.push_back(activity);
+        } else {
+            if (destination.name.empty()) destination.name = line;
+            else if (destination.description.empty()) destination.description = line;
+        }
+    }
+
+    inputFile.close();
+    cout << "Destinations loaded from " << filename << endl;
+}
+
 int main() {
     vector<TouristDestination> destinations;
 
@@ -147,7 +223,9 @@ int main() {
         cout << "8. Delete Accommodation" << endl;
         cout << "9. Create Activity" << endl;
         cout << "10. Delete Activity" << endl;
-        cout << "11. Exit" << endl;
+        cout << "11. Save Destinations" << endl;
+        cout << "12. Load Destinations" << endl;
+        cout << "13. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -292,13 +370,27 @@ int main() {
                 }
                 break;
             }
-            case 11: // Exit
+            case 11: { // Save Destinations
+                string filename;
+                cout << "Enter filename to save destinations: ";
+                cin >> filename;
+                saveDestinations(destinations, filename);
+                break;
+            }
+            case 12: { // Load Destinations
+                string filename;
+                cout << "Enter filename to load destinations: ";
+                cin >> filename;
+                loadDestinations(destinations, filename);
+                break;
+            }
+            case 13: // Exit
                 cout << "Exiting program." << endl;
                 break;
             default:
                 cout << "Invalid choice!" << endl;
         }
-    } while (choice != 11);
+    } while (choice != 13);
 
     return 0;
 }
