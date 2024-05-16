@@ -12,3 +12,9 @@ The Tourist Destination Management System is a console-based application designe
 
 4. **Enhanced User Experience**: Provide features such as personalized recommendations, interactive maps, and user reviews to enhance the overall user experience and facilitate informed decision-making during trip planning.
 
+5.   Screenshots:
+![Снимок экрана 2024-05-13 222720](https://github.com/spa1re4/final-project/assets/150504411/2b007df7-a721-4f48-a33e-ed0536330205)
+
+
+
+6.   My presentation:https://www.canva.com/design/DAGFIMWEBAA/n8wbK19_HYUTBQqDOkrWvw/edit?utm_content=DAGFIMWEBAA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
